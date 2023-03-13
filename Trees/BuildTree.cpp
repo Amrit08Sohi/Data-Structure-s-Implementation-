@@ -105,6 +105,37 @@ class BT {
 
         }
 
+        void inorderIter(Node* root) {
+            stack<Node*> st;
+            Node* curr = root;
+
+            while(curr != NULL || !st.empty()) {
+
+                while(curr != NULL) {
+                    st.push(curr);
+                    curr = curr->left;
+                }
+
+                curr = st.top();
+                st.pop();
+
+                cout << curr->data << " "; 
+
+                curr = curr->right;
+            }   
+        }
+
+        /*
+                    1
+                   / \
+                  2   3  
+                 / \   \
+                4   5   6
+
+                Inorder : 4 2 5 1 3 6
+        
+        */
+
 };
 int main()
 {
@@ -116,5 +147,6 @@ int main()
     tree->preorderIter(tree->root);
     cout << endl;
     tree->postorderIter(tree->root);  
+    tree->inorderIter(tree->root);
     return 0;
 }
