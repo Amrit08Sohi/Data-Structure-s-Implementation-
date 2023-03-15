@@ -10,6 +10,7 @@ class Node {
             this->data = data;
             this->left = this->right = NULL;
         }
+        Node(){}
 };
 
 class BST {
@@ -30,6 +31,36 @@ class BST {
                 root->left = insert(root->left,value);
             }else {
                 root->right = insert(root->right,value);
+            }
+            return root;
+        }
+
+        Node* insert_iter(Node* root,int *value,int n) {
+            // int n = sizeof(value)/sizeof(value[0]);
+            for(int i = 0; i < n; i++ ) {
+                Node* node = new Node(value[i]);
+                Node* parent = NULL;
+                
+                if (root == NULL) {
+                    root = node;
+                } else {
+                    Node* ptr = root;
+
+                    while(ptr != NULL) {
+                        parent = ptr;
+                        if(value[i] > ptr->data) {
+                            ptr = ptr->right;
+                        } else {
+                            ptr = ptr->left;
+                        }
+                    }
+
+                    if(value[i] > parent->data) {
+                        parent->right = node;
+                    } else {
+                        parent->left = node;
+                    }
+                }
             }
             return root;
         }
@@ -71,7 +102,7 @@ class BST {
                 cout << "Find IS" << endl;
                 // 2. Replace value with inorder successor
                 root->data = IS->data;
-                // 3. Delete the Node of Onorder Successor
+                // 3. Delete the Node of Inorder Successor
                 root->right = deleteNode(root->right,IS->data);
             }
             return root;
@@ -117,12 +148,15 @@ int main()
     */
 
     BST* tree = new BST();
-    for(int ele: values) {
-        tree->root = tree->insert(tree->root,ele);
-    }
-    tree->root = tree->deleteNode(tree->root,1);
+    // Insertion Using Iteration
+    tree->root = tree->insert_iter(tree->root,values,5);
+    // Insertion Using Recursion
+    // for(int ele: values) {
+    //     tree->root = tree->insert(tree->root,ele);
+    // }
+    tree->root = tree->deleteNode(tree->root,5);
     tree->inorder(tree->root);
-    cout << endl;
-    cout << tree->searchKey(tree->root,4);
+    // cout << endl;
+    // cout << tree->searchKey(tree->root,5);
     return 0;
 }
