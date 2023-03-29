@@ -69,8 +69,6 @@ int main()
         cin >> data;
         q->add(data);
     }
-    q->remove();
-    q->remove();
     q->print();
     
     

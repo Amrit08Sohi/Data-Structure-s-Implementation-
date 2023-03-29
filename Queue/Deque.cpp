@@ -28,14 +28,22 @@ public:
         this->rear = NULL;
         this->size = 0;
     }
-
+    // Functions to add data in front or rear
     void pushFront(int);
     void pushBack(int);
+
+    // Functions to delete data from front or rear
     int popFront();
     int popBack();
+
+    // Functions to get data from front or rear
     int peekFront();
     int peekBack();
+
+    // Function to get size of Deque
     int len();
+
+    // Function to print elements of Deque
     void print();
 };
 
@@ -47,14 +55,17 @@ int Deque::len()
 void Deque::pushFront(int data)
 {
     Node *newNode = new Node(data);
+    // If Queue is empty,then make newNode as front and rear
     if (front == NULL)
     {
         front = rear = newNode;
         size++;
         return;
     }
+    // else perform insert at head operation
     newNode->next = front;
     front->prev = newNode;
+    // Make new Node as head(front) and increase the size by 1
     front = newNode;
     size++;
 }
@@ -62,14 +73,17 @@ void Deque::pushFront(int data)
 void Deque::pushBack(int data)
 {
     Node *newNode = new Node(data);
+    // If Queue is empty,then make newNode as front and rear
     if (rear == NULL)
     {
         rear = front = newNode;
         size++;
         return;
     }
+    // else perform insert at tail operation
     newNode->prev = rear;
     rear->next = newNode;
+    // Make new Node as tail(rear) and increase the size by 1
     rear = newNode;
     size++;
 }
