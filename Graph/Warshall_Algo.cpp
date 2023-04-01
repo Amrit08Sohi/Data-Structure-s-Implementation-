@@ -53,13 +53,16 @@ int main()
             char ch;
             cout << "(y/n)Do you want to add an edge between " << i << "-->" << j << endl;
             cin >> ch;
+            int wt;
+            cout << "Enter weight" << endl;
+            cin >> wt;
             if (ch == 'y')
             {
-                graph[i][j] = 1;
+                graph[i][j] = wt;
             }
             else
             {
-                graph[i][j] = 0;
+                graph[i][j] = -1;
             }
         }
     }
