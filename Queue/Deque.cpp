@@ -169,11 +169,22 @@ void Deque::print()
 int main()
 {
     Deque *dq = new Deque();
-    dq->pushFront(5);
-    dq->pushFront(10);
+    // dq->pushFront(5);
+    // dq->pushFront(10);
 
+    // dq->pushBack(20);
+    // dq->pushBack(40);
+
+    dq->pushFront(10);
     dq->pushBack(20);
+    dq->pushFront(30);
     dq->pushBack(40);
+    dq->popFront();
+    dq->popBack();
+    dq->pushFront(50);
+    dq->pushBack(60);
+    //  50 10 20 60
+    
 
     dq->print();
     cout << "Size of Deque = " << dq->len();

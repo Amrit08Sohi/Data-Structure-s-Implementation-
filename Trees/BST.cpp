@@ -14,7 +14,7 @@ class Node {
 };
 
 class BST {
-    public:
+    public: 
         Node* root;
 
         BST() {
