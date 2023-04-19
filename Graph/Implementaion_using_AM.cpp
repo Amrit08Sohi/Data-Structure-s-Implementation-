@@ -19,28 +19,27 @@ using namespace std;
      6  0  0  0  0  0  1  0             
 */
 
-#define V  7
-void dfs_util(int node,int graph[V][V],bool vis[]) {
+void dfs_util(int node,int **graph,bool vis[],int v) {
     cout << node << " ";
     vis[node] = true;
 
-    for(int j = 0; j < V; j++) {
+    for(int j = 0; j < v; j++) {
         if(graph[node][j] == 1 && !vis[j]) {
-            dfs_util(j,graph,vis);
+            dfs_util(j,graph,vis,v);
         }
     }
 }
-void DFS(int graph[V][V]) {
-    bool vis[V] = {false};
+void DFS(int **graph,int v) {
+    bool vis[v] = {false};
 
-    for(int i = 0; i < V; i++) {
+    for(int i = 0; i < v; i++) {
         if(!vis[i]) {
-            dfs_util(i,graph,vis);
+            dfs_util(i,graph,vis,v);
         }
     }
 }
 
-void bfs_util(int node,int graph[V][V],bool vis[]) {
+void bfs_util(int node,int **graph,bool vis[],int v) {
     queue<int> q;
 
     q.push(0);
@@ -54,7 +53,7 @@ void bfs_util(int node,int graph[V][V],bool vis[]) {
             cout << curr << " ";
             vis[curr] = true;
 
-            for(int j = 0; j < V; j++) {
+            for(int j = 0; j < v; j++) {
                 if(graph[curr][j] == 1 && !vis[j]) {
                     q.push(j);
                 }
@@ -62,12 +61,12 @@ void bfs_util(int node,int graph[V][V],bool vis[]) {
         }
     }
 }
-void BFS(int graph[V][V]) {
-    bool vis[V] = {false};
+void BFS(int **graph,int v) {
+    bool vis[v] = {false};
 
-    for(int i = 0; i < V; i++) {
+    for(int i = 0; i < v; i++) {
         if(!vis[i]) {
-            bfs_util(i,graph,vis);
+            bfs_util(i,graph,vis,v);
         }
     }
 }
@@ -75,14 +74,20 @@ void BFS(int graph[V][V]) {
 
 int main()
 {
-    // int v;
-    // cout << "Enter the number of nodes/vertices in graph" << endl;
-    // cin >> v;
+    int v;
+    cout << "Enter the number of nodes/vertices in graph" << endl;
+    cin >> v;
 
-    int graph[V][V];
+    int **graph;
 
-    for(int i = 0; i < V; i++) {
-        for(int j = 0; j < V; j++) {
+    graph = new int*[v];
+    for(int i = 0; i < v; i++) {
+        graph[i] = new int[v];
+    }
+
+
+    for(int i = 0; i < v; i++) {
+        for(int j = 0; j < v; j++) {
             char ch;
             cout << "(y/n)Do you want to add an edge between " << i << "-->" << j << endl;
             cin >> ch;
@@ -95,14 +100,20 @@ int main()
     }
 
     cout << "Graph Using Adjacency Matrix" << endl;
-    for(int i = 0; i < V; i++) {
-        for(int j = 0; j < V; j++) {
+    for(int i = 0; i < v; i++) {
+        for(int j = 0; j < v; j++) {
             cout << graph[i][j] << " ";
         }
         cout << endl;
     }
     cout << "BFS Traversal" << endl;
-    BFS(graph);
+    BFS(graph,v);
+
+    for(int i = 0; i < v; i++) {
+        delete[] graph[i];
+    }
+    delete[] graph;
+
 
 
     return 0;
