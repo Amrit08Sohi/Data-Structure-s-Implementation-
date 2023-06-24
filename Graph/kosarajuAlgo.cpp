@@ -114,11 +114,5 @@ int main()
    
 
     cout << stronglyConnectedComponents(6,edges);
-    /*
-        2   3
-        3   1
-        4   0,1
-        5   0,2
-    */
     return 0;
 }
