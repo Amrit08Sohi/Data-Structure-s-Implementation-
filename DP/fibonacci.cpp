@@ -5,7 +5,7 @@ using namespace std;
 
 // Generating fibonacci Series using recursion upto nth index
 // Time Complexity : O(n*2^n)
-// Space Complexity : O(n)
+// Space Complexity : O(n*n)
 /**
  * The function recursively calculates the nth Fibonacci number.
  * 
