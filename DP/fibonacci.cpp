@@ -131,11 +131,5 @@ int main()
 
     // Fibonacci Using Iteration
     fib(n);
-
-
-
-
-
-    
     return 0;
 }
