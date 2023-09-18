@@ -103,6 +103,8 @@ void is_next_same(int &x,int *arr,int len) {
     } while (x < len and arr[x-1] == arr[x]);
     
 }
+
+
 void __optimal_union(int* a, int n, int* b, int m) {
     sort(a,a+n);
     sort(b,b+m);

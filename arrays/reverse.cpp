@@ -9,6 +9,8 @@ void reverse(int *arr,int n) {
         i++; j--;
     }
 }
+
+
 int main()
 {
     int n;
